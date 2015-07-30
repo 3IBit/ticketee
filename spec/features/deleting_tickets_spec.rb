@@ -1,11 +1,17 @@
 require 'rails_helper'
 require 'capybara/rails'
+require 'support/authentication_helpers'
+
 
 feature "Deleting tickets" do
 	let!(:project) { FactoryGirl.create(:project) }
-	let!(:ticket) { FactoryGirl.create(:ticket, project: project) }
+	let!(:user) { FactoryGirl.create(:user) }
+	let!(:ticket) { 
+		FactoryGirl.create(:ticket, project: project, user: user) }
 
 	before do
+		sign_in_as! (user)
+
 		visit '/'
 		click_link project.name
 		click_link ticket.title
