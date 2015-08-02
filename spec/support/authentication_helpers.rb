@@ -13,10 +13,21 @@ RSpec.configure do |c|
 	c.include AuthenticationHelpers, type: :feature
 end
 
+
+#including for models or views only
+#You can specify type: :model as a filter if you want to include a
+#module only in your model specs. If you ever write any view specs,
+#you can use type: :view to include this module only in the view
+#specs. Similarly, you can use :features for specs that reside in
+#spec/features.
+
+
 module AuthHelpers
+
   def sign_in(user)
    session[:user_id] = user.id
   end
+  
 end
 
 RSpec.configure do |c|

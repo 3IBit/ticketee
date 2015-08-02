@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
+
+   def authorize_admin!
+     
+     require_signin!
+
+     unless current_user.admin?
+       flash[:alert] = "You must be an admin to do that."
+       redirect_to root_path     
+     end
+   end
+
    def require_signin!
      unless session[:user_id].present?
      	flash[:alert] = "You need to sign in or sign up before continuing."
