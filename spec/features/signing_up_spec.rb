@@ -3,9 +3,11 @@ require 'capybara/rails'
 
 feature "Signing up" do
   scenario "Successfull sign up" do
+
     visit '/'
 
-    click_link 'Sign up'
+    click_link 'Sign up'  
+    fill_in "Username", with: "Rodolfo" 
     fill_in "Email", with: "user@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
