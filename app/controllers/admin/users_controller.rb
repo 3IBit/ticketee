@@ -15,15 +15,14 @@ class Admin::UsersController < Admin::BaseController
     params[:password_confirmation] = params[:password]
     @user = User.new(params)
 
-    if @user.save
-      flash[:notice] = "User has been created."
-      redirect_to admin_users_path
-    else
-      flash.now[:alert] = "User has not been created."
-      render action: "new"
-    end
+      if @user.save
+      	flash[:notice] = "User has been created."
+      	redirect_to admin_users_path
+      else
+      	flash.now[:alert] = "User has not been created."
+      	render  action: "new"
+      end
   end
-
 
   def show
   end
@@ -46,6 +45,18 @@ class Admin::UsersController < Admin::BaseController
       render action: "edit"
     end
 
+  end
+
+  def destroy
+
+    if @user == current_user
+      flash[:alert] = "You cannot delete yourself!"
+    else
+      @user.destroy 
+      flash[:notice] = "User has been deleted."
+    end
+
+    redirect_to admin_users_path
   end
 
  private
