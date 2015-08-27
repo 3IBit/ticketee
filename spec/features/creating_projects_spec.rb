@@ -1,5 +1,5 @@
-require 'capybara'
 require 'rails_helper'
+require 'capybara/rails'
 require 'support/authentication_helpers'
 
 feature 'Creating Projects' do

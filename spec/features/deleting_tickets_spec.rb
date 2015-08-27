@@ -10,6 +10,7 @@ feature "Deleting tickets" do
 		FactoryGirl.create(:ticket, project: project, user: user) }
 
 	before do
+		define_permission!(user, "view", project)
 		sign_in_as! (user)
 
 		visit '/'
@@ -21,6 +22,6 @@ feature "Deleting tickets" do
       click_link "Delete Ticket"
 
       expect(page).to have_content("Ticket has been deleted.")
-      expect(page.current_url).to eq(project_url(project))
+      expect(page.current_url).to eql(project_url(project))
 	end
 end
