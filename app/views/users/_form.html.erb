@@ -33,9 +33,9 @@
   </p> 
 
        <% if @user.new_record? %>
-        <%= f.submit "Sign up" %>
+        <%= f.submit "Sign up", class: "btn btn-primary"  %>
       <% else %>
-        <%= f.submit "Update Profile" %>
+        <%= f.submit "Update Profile", class: "btn btn-primary"  %>
       <% end %>
 
 <% end %>
