@@ -4,7 +4,7 @@ require 'capybara/rails'
 feature "Signing up" do
   scenario "Successfull sign up" do
 
-    visit '/'
+    visit root_path
 
     click_link 'Sign up'  
     fill_in "Username", with: "Rodolfo" 
